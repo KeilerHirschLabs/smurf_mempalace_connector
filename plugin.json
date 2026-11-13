@@ -92,7 +92,7 @@
                      "mcp",
                      "read-only"
                  ],
-    "license":  "MIT",
+    "license":  "EUPL-1.2",
     "name":  "khl-mempalace-recall",
     "version":  "0.2.0"
 }

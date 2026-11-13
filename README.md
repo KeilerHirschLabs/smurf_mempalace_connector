@@ -44,4 +44,4 @@ We welcome an upstream MemPalace documentation/integration PR after public sourc
 
 ## License
 
-MIT, © 2026 KeilerHirschLabs. MemPalace is a separate project with its own licenses and maintainers.
+Licensed under the **European Union Public Licence v1.2 (EUPL-1.2)**, © 2026 KeilerHirschLabs. Redistribution and modifications are subject to the EUPL copyleft and compatibility clauses. MemPalace is a separate project with its own licences and maintainers.

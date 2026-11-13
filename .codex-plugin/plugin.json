@@ -90,7 +90,7 @@
                      "mcp",
                      "read-only"
                  ],
-    "license":  "MIT",
+    "license":  "EUPL-1.2",
     "mcpServers":  "./.mcp.json",
     "name":  "khl-mempalace-recall",
     "requires_local_executor":  true,

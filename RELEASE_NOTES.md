@@ -1,6 +1,7 @@
 # Release 0.2.0 – KHL MemPalace Recall community preview
 
 - First independently packaged public-source candidate under KeilerHirschLabs branding.
+- Licensing: EUPL-1.2 (reciprocal open-source licence); copyright © 2026 KeilerHirschLabs.
 - Supports read-only SQLite FTS5 search in both `sqlite_exact`/`rust_exact` and Chroma storage formats.
 - Explicit local `allowed_wings` allowlist; no hardcoded user paths, executable child processes, network listener, migrations, or writes.
 - Returns provenance and bounded verbatim excerpts.
