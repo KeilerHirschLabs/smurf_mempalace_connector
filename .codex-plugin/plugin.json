@@ -74,7 +74,7 @@
                       "developerName":  "KeilerHirschLabs",
                       "displayName":  "KHL MemPalace Recall",
                       "logo":  "./assets/icon.png",
-                      "longDescription":  "An independent, read-only local MCP plugin for searching your own MemPalace SQLite index (Chroma or sqlite_exact). Source citations and wing allowlists; no writer, daemon, telemetry, or external network listener. Tested in selected ChatGPT Plus Work modes on Windows; ordinary Chats and broad account availability are not guaranteed.",
+                      "longDescription":  "An independent, read-only local MCP plugin for searching your own MemPalace SQLite index (Chroma or sqlite_exact). Source citations and wing allowlists; no writer, daemon, telemetry, or external network listener. The earlier private v0.1.3 prototype was tested in ChatGPT Plus Work local/cloud modes on one Windows machine; public v0.2.0 has only passed local fixture tests and its ChatGPT-host compatibility is not yet verified. Ordinary ChatGPT chats are not supported by confirmed evidence.",
                       "privacyPolicyURL":  "https://github.com/KeilerHirschLabs/mempalace-chatgpt-recall/blob/main/PRIVACY.md",
                       "shortDescription":  "Source-grounded local recall",
                       "supportURL":  "https://github.com/KeilerHirschLabs/mempalace-chatgpt-recall/issues",
