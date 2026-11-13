@@ -1,0 +1,4 @@
+{
+  "database": "C:\\path\\to\\your\\palace\\sqlite_exact.sqlite3",
+  "allowed_wings": ["my-project"]
+}

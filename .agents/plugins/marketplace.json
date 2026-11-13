@@ -1,0 +1,20 @@
+{
+  "name": "khl-mempalace",
+  "interface": {
+    "displayName": "KHL MemPalace Community"
+  },
+  "plugins": [
+    {
+      "name": "khl-mempalace-recall",
+      "source": {
+        "source": "local",
+        "path": "."
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

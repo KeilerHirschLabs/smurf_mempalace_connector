@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "khl-mempalace-recall": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["-u", "${PLUGIN_ROOT}/server/readonly_mcp.py"],
+      "cwd": "${PLUGIN_ROOT}"
+    }
+  }
+}
