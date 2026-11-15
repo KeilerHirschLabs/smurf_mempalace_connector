@@ -1,28 +1,28 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "author": {
-    "name": "KeilerHirschLabs"
+    "name": "KeilerHirsch Labs"
   },
-  "description": "SMURF — Secure MemPalace Utility for Retrieval & Filtering. A read-only, source-grounded MCP connector for MemPalace.",
+  "description": "SMURF — Secure MemPalace Utility for Retrieval & Filtering. Read-only local MemPalace MCP connector.",
   "extensions": {
     "com.openai": {
       "interface": {
         "capabilities": [],
         "category": "Developer Tools",
         "composerIcon": "./assets/icon.png",
-        "defaultPrompt": "Find the original source of an earlier technical decision in my configured MemPalace.",
-        "developerName": "KeilerHirschLabs",
+        "defaultPrompt": "Use SMURF to find the original source of an earlier technical decision in my configured MemPalace.",
+        "developerName": "KeilerHirsch Labs",
         "displayName": "SMURF – MemPalace Connector",
         "logo": "./assets/icon.png",
-        "longDescription": "Connect MemPalace to OpenAI workflows. Retrieve source-grounded memories with read-only access and traceable references. This independent community connector supports locally configured sqlite_exact/rust_exact and Chroma SQLite FTS5 indices, bounded excerpts and explicit wing allowlists. It does not modify source data. ChatGPT host compatibility depends on available local MCP execution; ordinary chats remain unverified. Not affiliated with OpenAI or MemPalace maintainers.",
-        "privacyPolicyURL": "https://github.com/KeilerHirschLabs/smurf-mempalace-connector/blob/main/PRIVACY.md",
-        "shortDescription": "Read-only MemPalace search with source references",
-        "supportURL": "https://github.com/KeilerHirschLabs/smurf-mempalace-connector/issues",
-        "termsOfServiceURL": "https://github.com/KeilerHirschLabs/smurf-mempalace-connector/blob/main/TERMS.md",
-        "websiteURL": "https://github.com/KeilerHirschLabs/smurf-mempalace-connector"
+        "longDescription": "Connect MemPalace to OpenAI workflows. Retrieve source-grounded memories with read-only access and traceable references. Independent community-built, read-only local MCP connector for MemPalace. Supports lexical FTS5 search of configured sqlite_exact/rust_exact and Chroma SQLite indices, bounded source excerpts and wing allowlists. No database writes, background memory or network listener. Some ChatGPT execution modes do not expose local MCP; ordinary chats are not yet verified.",
+        "privacyPolicyURL": "https://github.com/KeilerHirschLabs/smurf_mempalace_connector/blob/main/PRIVACY.md",
+        "shortDescription": "Read-only MemPalace connector with traceable sources",
+        "supportURL": "https://github.com/KeilerHirschLabs/smurf_mempalace_connector/issues",
+        "termsOfServiceURL": "https://github.com/KeilerHirschLabs/smurf_mempalace_connector/blob/main/TERMS.md",
+        "websiteURL": "https://github.com/KeilerHirschLabs/smurf_mempalace_connector"
       },
       "publication": {
-        "release_notes": "SMURF – MemPalace Connector naming update; no change to read-only retrieval behavior or MCP tool names."
+        "release_notes": "SMURF branding alignment: name, skill, server alias, support documents and EUPL-1.2 metadata. Read-only MCP tool names and implementation unchanged."
       },
       "requires_local_executor": true,
       "review": {
@@ -83,16 +83,17 @@
   },
   "keywords": [
     "smurf",
-    "connector",
     "mempalace",
-    "context",
-    "recall",
+    "connector",
+    "read-only",
+    "mcp",
+    "source-grounded",
     "sqlite",
     "chroma",
-    "mcp",
-    "read-only"
+    "context",
+    "recall"
   ],
   "license": "EUPL-1.2",
   "name": "smurf-mempalace-connector",
-  "version": "0.2.1"
+  "version": "0.2.2"
 }

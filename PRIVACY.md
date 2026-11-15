@@ -1,9 +1,15 @@
-# Privacy – SMURF – MemPalace Connector
+# Privacy — SMURF – MemPalace Connector
 
-This local open-source plugin does not operate an independent cloud backend or telemetry service. It reads only the configured MemPalace SQLite index and returns a limited set of matching snippets, source paths and line references to the MCP host upon request. It does not collect user accounts, passwords, payment data or analytics for KeilerHirschLabs.
+SMURF is an independent, community-built, read-only local MCP connector published by **KeilerHirsch Labs**. It has no independent cloud backend, telemetry service or account system. It reads the configured MemPalace SQLite index and returns limited search results, source paths and provenance metadata to the invoking MCP host. It does not change the index or create its own query-history database.
 
-**Host disclosure:** Tool responses become available to the invoking ChatGPT/Codex environment. Depending on the product, configuration and execution mode, the host may transmit tool results to its cloud service. This is outside the plugin's control. Users choose which palace and wings the plugin may read. Do not expose sensitive wings to a host you do not trust.
+## Host disclosure
 
-**Retention:** The plugin itself creates no persistent record of queries or results. Your existing MemPalace index, source files, OS logs, the host's chat history and service retention are governed by their own settings and providers. This plugin does not delete or alter any of those records. To stop disclosure, remove/disable the plugin and its local configuration; deleting the plugin does not erase host chat history.
+When a user invokes SMURF, retrieved text and source paths become visible to the ChatGPT/Codex host and may be transmitted to that provider under its own service settings. This transmission is outside SMURF's control. The user decides which local database and wings are authorized through the connector configuration. **Do not authorize SECRET or other sensitive wings unless disclosure to the invoking host is acceptable.**
 
-**Support:** Bugs and security issues can be reported through the project's GitHub repository. See `SECURITY.md`. The maintainers do not obtain automatic remote access to your machine.
+## Retention and deletion
+
+SMURF itself does not persist search responses. Original MemPalace sources, SQLite files, OS logs and host-side chat or service records have separate retention and deletion controls. Uninstalling SMURF does not erase those records. SMURF does not obtain automatic remote access to your machine.
+
+## Contact
+
+For bugs, privacy questions and security reports, use the GitHub repository and its `SECURITY.md` reporting guidance. Project: https://github.com/KeilerHirschLabs/smurf_mempalace_connector

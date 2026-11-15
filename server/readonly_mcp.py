@@ -1,4 +1,4 @@
-"""KHL MemPalace Recall: local, bounded, read-only SQLite MCP bridge.
+"""SMURF – MemPalace Connector: local, bounded, read-only SQLite MCP bridge.
 
 Supports the MemPalace sqlite_exact/rust_exact schema and Chroma's SQLite FTS5
 storage. No subprocesses, indexing, writers, arbitrary file-path tool inputs,
@@ -15,7 +15,7 @@ import sys
 import time
 from typing import Any
 
-VERSION = "0.2.0"
+VERSION = "0.2.2"
 PROTOCOL = "2025-06-18"
 MAX_QUERY_CHARS = 160
 MAX_QUERY_TOKENS = 12
@@ -228,8 +228,8 @@ def search(arguments: Any) -> tuple[dict[str, Any], bool]:
 
 
 TOOL_LIST = [
-    {"name": "khl_recall_status", "title": "KHL MemPalace Recall Status", "description": "Check the explicitly configured local MemPalace SQLite index. No reads of unconfigured paths.", "inputSchema": {"type": "object", "properties": {}, "additionalProperties": False}, "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}},
-    {"name": "khl_recall_search", "title": "KHL MemPalace Recall Search", "description": "Read-only, source-grounded lexical search in the locally configured MemPalace SQLite index. Limits and wing allowlist enforced locally. Text may be sent to the host AI when this tool is called.", "inputSchema": {"type": "object", "properties": {"query": {"type": "string", "minLength": 1, "maxLength": 160}, "wing": {"type": "string", "maxLength": 100}, "limit": {"type": "integer", "minimum": 1, "maximum": 10}}, "required": ["query"], "additionalProperties": False}, "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}},
+    {"name": "khl_recall_status", "title": "SMURF – MemPalace Connector Status", "description": "Check the explicitly configured local MemPalace SQLite index. No reads of unconfigured paths.", "inputSchema": {"type": "object", "properties": {}, "additionalProperties": False}, "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}},
+    {"name": "khl_recall_search", "title": "SMURF – MemPalace Connector Search", "description": "Read-only, source-grounded lexical search in the locally configured MemPalace SQLite index. Limits and wing allowlist enforced locally. Text may be sent to the host AI when this tool is called.", "inputSchema": {"type": "object", "properties": {"query": {"type": "string", "minLength": 1, "maxLength": 160}, "wing": {"type": "string", "maxLength": 100}, "limit": {"type": "integer", "minimum": 1, "maximum": 10}}, "required": ["query"], "additionalProperties": False}, "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}},
 ]
 
 
@@ -247,7 +247,7 @@ def execute(msg: Any) -> None:
         params = msg.get("params") or {}
         req = params.get("protocolVersion", PROTOCOL) if isinstance(params, dict) else PROTOCOL
         version = req if req in ("2025-06-18", "2025-03-26", "2024-11-05") else PROTOCOL
-        out = {"protocolVersion": version, "capabilities": {"tools": {"listChanged": False}}, "serverInfo": {"name": "khl-mempalace-recall", "version": VERSION}}
+        out = {"protocolVersion": version, "capabilities": {"tools": {"listChanged": False}}, "serverInfo": {"name": "smurf-mempalace-connector", "version": VERSION}}
     elif method == "ping":
         out = {}
     elif method == "tools/list":

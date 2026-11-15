@@ -1,16 +1,12 @@
-# Unreleased – SMURF – MemPalace Connector (0.2.1 manifest)
+# SMURF – MemPalace Connector (0.2.2, branding alignment)
 
-- Rebranded repository, Marketplace metadata, documentation and links as SMURF.
-- Acronym: Secure MemPalace Utility for Retrieval & Filtering.
-- Existing MCP tool names and read-only access behavior remain unchanged.
-- OpenAI plugin discoverability not changed by the GitHub source update.
+- Unified display name, Skill metadata, MCP server alias, README and public publisher text as SMURF – MemPalace Connector by KeilerHirsch Labs.
+- Aligned licence metadata and Terms to the repository's EUPL-1.2 (canonical full text on GitHub).
+- Retained `khl_recall_status` and `khl_recall_search` APIs and unchanged read-only implementation.
+- OpenAI plugin remains PRIVATE. GitHub source updates do not publish the Marketplace listing or establish general host compatibility.
 
-# Release 0.2.0 – KHL MemPalace Recall community preview
+## Previous 0.2.0 technical scope
 
-- First independently packaged public-source candidate under KeilerHirschLabs branding.
-- Licensing: EUPL-1.2 (reciprocal open-source licence); copyright © 2026 KeilerHirschLabs.
-- Supports read-only SQLite FTS5 search in both `sqlite_exact`/`rust_exact` and Chroma storage formats.
-- Explicit local `allowed_wings` allowlist; no hardcoded user paths, executable child processes, network listener, migrations, or writes.
-- Returns provenance and bounded verbatim excerpts.
-- Includes tests, local marketplace manifest, security/privacy/terms pages and a community upstream proposal.
-- Evidence for ChatGPT Plus Work comes from the previous private v0.1.3 synthetic-lab test on one Windows computer. Public v0.2.0 compatibility remains subject to further host testing.
+- Read-only SQLite FTS5 search against MemPalace `sqlite_exact`/`rust_exact` and Chroma indices.
+- Explicit local wing allowlist, bounded source excerpts and source-reference metadata.
+- No database writes or telemetry; availability depends on supported local MCP hosts.

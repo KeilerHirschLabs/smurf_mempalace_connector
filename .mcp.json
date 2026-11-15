@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "khl-mempalace-recall": {
+    "smurf-mempalace-connector": {
       "type": "stdio",
       "command": "python",
       "args": [

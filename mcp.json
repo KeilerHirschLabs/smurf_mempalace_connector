@@ -1,10 +1,13 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
   "mcpServers": {
-    "khl-mempalace-recall": {
+    "smurf-mempalace-connector": {
       "type": "stdio",
       "command": "python",
-      "args": ["-u", "${PLUGIN_ROOT}/server/readonly_mcp.py"],
+      "args": [
+        "-u",
+        "${PLUGIN_ROOT}/server/readonly_mcp.py"
+      ],
       "cwd": "${PLUGIN_ROOT}"
     }
   }

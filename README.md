@@ -1,51 +1,42 @@
 # SMURF – MemPalace Connector
 
-**Secure MemPalace Utility for Retrieval & Filtering.**
+**Secure MemPalace Utility for Retrieval & Filtering**
 
-Connect MemPalace to OpenAI workflows. Retrieve source-grounded memories with read-only access and traceable references.
+by **KeilerHirsch Labs**
 
-An independent, source-grounded, read-only MemPalace ↔ supported OpenAI workflow bridge by [KeilerHirschLabs](https://github.com/KeilerHirschLabs). Community project; not affiliated with OpenAI or the MemPalace maintainers.
+> Connect MemPalace to OpenAI workflows. Retrieve source-grounded memories with read-only access and traceable references.
 
-> Status: **community preview**. The public v0.2.0 release predates SMURF branding; v0.2.1 updates naming and manifests without changing retrieval behavior. A private earlier prototype passed real ChatGPT Plus Work (local and cloud-mode) tests on one Windows installation, with a synthetic `sqlite_exact` dataset. This generic v0.2.0 package is tested with local MCP/SQLite fixtures; broader ChatGPT deployments remain to be verified. **Ordinary ChatGPT chats have not been proven to expose this local plugin.**
+SMURF is a source-grounded, read-only connector between a **locally configured MemPalace SQLite index** and supported OpenAI/ChatGPT/Codex MCP execution modes. It is not MemPalace itself, an official OpenAI product, or a separate AI memory platform.
 
-## What it actually does
+## OpenAI Marketplace plugin
 
-- `khl_recall_status`: verify one locally configured SQLite index and allowed wing filters.
-- `khl_recall_search`: fast read-only **lexical FTS5** search with quoted-safe terms, bounded results, source-file and line-range provenance.
-- Supports **MemPalace `sqlite_exact`/`rust_exact`** (`sqlite_exact.sqlite3`) and **Chroma** (`chroma.sqlite3`) indices, with no migration and no embedding generation.
-- Uses stdlib Python 3.10+, SQLite `mode=ro`, `PRAGMA query_only`, query-time budget, explicit local wing allowlist. No daemon, network listener, hidden uploads, API key, or write tool.
+A private **SMURF – MemPalace Connector** plugin exists for OpenAI ecosystem testing. **It is not publicly listed or generally installable from the OpenAI Plugin Marketplace.** A public Marketplace launch requires further testing. This GitHub source repository is already public; that does not make the OpenAI plugin public.
 
-**Not** semantic vector retrieval, background memory, model training, automatic contextual injection, MemPalace's full MCP API, or guaranteed continuity across all chats. Original files and indices remain authoritative; results can be stale.
+Selected ChatGPT Plus Work environments have been tested using synthetic data; the current package has local MCP/SQLite fixture tests. Ordinary ChatGPT chats and broader host compatibility are **not confirmed** to expose the local MCP connector.
 
-## Requirements
+## Capabilities and limitations
 
-- Windows desktop (Windows 11 test environment), Python 3.10+ in PATH with SQLite FTS5 enabled.
-- Local MemPalace palace created with a supported index backend.
-- ChatGPT/Codex host capable of running a **local stdio MCP plugin**. Our working installation used ChatGPT Plus **Work**, in both tested execution modes. Availability depends on account and host; ordinary chats may not expose local MCP.
+- `khl_recall_status`: verify the locally configured index, detected backend and allowed wing filters.
+- `khl_recall_search`: bounded read-only **SQLite FTS5 lexical search**, with source-file and line-range provenance where available.
+- Supports MemPalace `sqlite_exact` / `rust_exact` and Chroma SQLite indices. No migration or embeddings generation.
+- Uses standard Python 3.10+, SQLite `mode=ro`, `PRAGMA query_only`, a query-time budget, and a configured wing allowlist; no background daemon, network listener, API key, or writer tool.
 
-## Install on your own machine
+This is **not** semantic retrieval, host-side background memory, automatic prompt injection, original-file verification, or guaranteed cross-session continuity. Results may be stale; verify original sources for consequential decisions.
 
-1. Download this repository/release to a stable local folder. Do **not** use another person's local paths.
-2. Create your own config file:
-   - Windows: `%APPDATA%\KeilerHirschLabs\MemPalaceRecall\config.json`
-   - Linux/macOS: `~/.config/keilerhirschlabs/mempalace-recall/config.json`
-   - Or point `KHL_RECALL_CONFIG` to another **absolute** JSON config path.
-3. Use `config.example.json` as a starting point, replacing `database` with an **absolute path** to your own `sqlite_exact.sqlite3` or `chroma.sqlite3`. Set `allowed_wings` to one or more wing names; **`["*"]` explicitly permits all wings and may expose sensitive content**, so use only when you understand the risk.
-4. Install the plugin using your host's supported **local marketplace** flow; for Codex CLI, register the local marketplace and install `smurf-mempalace-connector@<marketplace-name>`. The portable `plugin.json`, `mcp.json`, and compatibility manifests are included. The plugin runs `python -u ${PLUGIN_ROOT}/server/readonly_mcp.py`.
-5. In a **local Work** task, select the plugin and ask: “Check SMURF MemPalace Connector status and search for my earlier decision about X.” Only claim success when a real `tools/call` returned results.
+## Setup
 
-**Troubleshooting:** If `tools/list` works locally but the AI cannot call the tools, check host plugin activation, local vs cloud execution mode, plugin cache and local tool discovery. Do not reinstall MemPalace or increase your plan until the execution mode is verified. Run local tests with `python -m unittest discover -s tests -v`.
+1. Install a compatible MemPalace local index and have Python 3.10+ with SQLite FTS5 available.
+2. Clone the current `main` branch of [smurf_mempalace_connector](https://github.com/KeilerHirschLabs/smurf_mempalace_connector) into a stable local directory. Do **not** install the historical `v0.2.0` release archive as SMURF: its plugin manifest still uses the earlier `khl-mempalace-recall` package slug. Until a new SMURF release is published, use the current `main` branch.
+3. Copy `config.example.json` to the plugin config location and enter your own **absolute** SQLite index path. On Windows the default is `%APPDATA%/KeilerHirschLabs/MemPalaceRecall/config.json`; on Linux/macOS use `~/.config/keilerhirschlabs/mempalace-recall/config.json`. `KHL_RECALL_CONFIG` can point to another absolute JSON config.
+4. Restrict `allowed_wings` to exactly the data intended for use with the invoking AI host. The `*` wildcard explicitly permits all wings and may expose sensitive content.
+5. Install/register the plugin using a host that supports local stdio MCP execution. The MCP server command is `python -u ${PLUGIN_ROOT}/server/readonly_mcp.py`; the marketplace package slug is `smurf-mempalace-connector` (the GitHub repository uses underscores only in its repository name). Use `khl_recall_status` before trying searches.
 
-## Security and data flow
+A failed or unavailable host tool is not a successful search. For local smoke tests, run `python -m unittest discover -s tests -v`.
 
-Your SQLite database is never modified by this plugin. **When an AI invokes the search tool, the retrieved source snippets are returned to the host and may be transmitted to the AI provider.** This is an explicit client-side disclosure boundary; do not permit Wings containing sensitive or confidential material unless you intend to share that content with the host. Read `PRIVACY.md` and `SECURITY.md` before use.
+## Data protection
 
-The plugin does not upload anything directly, run arbitrary commands, or accept paths from AI tools. Source text is untrusted data: the skill instructs the model to ignore instructions embedded in results. No automated indexing or migration is performed.
+The connector never modifies the configured SQLite index. **Returned snippets and source paths may be sent by the MCP host to the AI provider.** This boundary must be understood before enabling sensitive wings. See [Privacy](PRIVACY.md), [Security](SECURITY.md), and [Terms](TERMS.md).
 
-## Upstream PR scope
+## Publisher and licence
 
-We welcome an upstream MemPalace documentation/integration PR after public source release and maintainers' review; upstream should not be asked to adopt unsupported claims about ChatGPT access. See `docs/upstream-pr-proposal.md`.
-
-## License
-
-Licensed under the **European Union Public Licence v1.2 (EUPL-1.2)**, © 2026 KeilerHirschLabs. Redistribution and modifications are subject to the EUPL copyleft and compatibility clauses. MemPalace is a separate project with its own licences and maintainers.
+**KeilerHirsch Labs** — independent community integration, unaffiliated with OpenAI or the upstream MemPalace maintainers. Licensed **EUPL-1.2**; the full canonical licence text is in [`LICENSE`](LICENSE). Attribution and provenance must be preserved in distributed derivatives.
