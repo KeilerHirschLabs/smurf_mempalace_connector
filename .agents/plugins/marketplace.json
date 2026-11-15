@@ -1,11 +1,11 @@
 {
-  "name": "khl-mempalace",
+  "name": "smurf-mempalace",
   "interface": {
-    "displayName": "KHL MemPalace Community"
+    "displayName": "SMURF – MemPalace Connector"
   },
   "plugins": [
     {
-      "name": "khl-mempalace-recall",
+      "name": "smurf-mempalace-connector",
       "source": {
         "source": "local",
         "path": "./"

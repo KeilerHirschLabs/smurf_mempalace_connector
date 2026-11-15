@@ -1,4 +1,4 @@
-# Privacy – KHL MemPalace Recall
+# Privacy – SMURF – MemPalace Connector
 
 This local open-source plugin does not operate an independent cloud backend or telemetry service. It reads only the configured MemPalace SQLite index and returns a limited set of matching snippets, source paths and line references to the MCP host upon request. It does not collect user accounts, passwords, payment data or analytics for KeilerHirschLabs.
 

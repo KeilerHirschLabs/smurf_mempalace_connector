@@ -1,3 +1,10 @@
+# Unreleased – SMURF – MemPalace Connector (0.2.1 manifest)
+
+- Rebranded repository, Marketplace metadata, documentation and links as SMURF.
+- Acronym: Secure MemPalace Utility for Retrieval & Filtering.
+- Existing MCP tool names and read-only access behavior remain unchanged.
+- OpenAI plugin discoverability not changed by the GitHub source update.
+
 # Release 0.2.0 – KHL MemPalace Recall community preview
 
 - First independently packaged public-source candidate under KeilerHirschLabs branding.

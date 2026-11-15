@@ -1,8 +1,12 @@
-# KHL MemPalace Recall
+# SMURF – MemPalace Connector
 
-**An independent, source-grounded, read-only MemPalace ↔ ChatGPT Desktop Work bridge** by [KeilerHirschLabs](https://github.com/KeilerHirschLabs). Community project; not affiliated with OpenAI or the MemPalace maintainers.
+**Secure MemPalace Utility for Retrieval & Filtering.**
 
-> Status: **community preview v0.2.0**. A private earlier prototype passed real ChatGPT Plus Work (local and cloud-mode) tests on one Windows installation, with a synthetic `sqlite_exact` dataset. This generic v0.2.0 package is tested with local MCP/SQLite fixtures; broader ChatGPT deployments remain to be verified. **Ordinary ChatGPT chats have not been proven to expose this local plugin.**
+Connect MemPalace to OpenAI workflows. Retrieve source-grounded memories with read-only access and traceable references.
+
+An independent, source-grounded, read-only MemPalace ↔ supported OpenAI workflow bridge by [KeilerHirschLabs](https://github.com/KeilerHirschLabs). Community project; not affiliated with OpenAI or the MemPalace maintainers.
+
+> Status: **community preview**. The public v0.2.0 release predates SMURF branding; v0.2.1 updates naming and manifests without changing retrieval behavior. A private earlier prototype passed real ChatGPT Plus Work (local and cloud-mode) tests on one Windows installation, with a synthetic `sqlite_exact` dataset. This generic v0.2.0 package is tested with local MCP/SQLite fixtures; broader ChatGPT deployments remain to be verified. **Ordinary ChatGPT chats have not been proven to expose this local plugin.**
 
 ## What it actually does
 
@@ -27,8 +31,8 @@
    - Linux/macOS: `~/.config/keilerhirschlabs/mempalace-recall/config.json`
    - Or point `KHL_RECALL_CONFIG` to another **absolute** JSON config path.
 3. Use `config.example.json` as a starting point, replacing `database` with an **absolute path** to your own `sqlite_exact.sqlite3` or `chroma.sqlite3`. Set `allowed_wings` to one or more wing names; **`["*"]` explicitly permits all wings and may expose sensitive content**, so use only when you understand the risk.
-4. Install the plugin using your host's supported **local marketplace** flow; for Codex CLI, register the local marketplace and install `khl-mempalace-recall@<marketplace-name>`. The portable `plugin.json`, `mcp.json`, and compatibility manifests are included. The plugin runs `python -u ${PLUGIN_ROOT}/server/readonly_mcp.py`.
-5. In a **local Work** task, select the plugin and ask: “Check KHL MemPalace Recall status and search for my earlier decision about X.” Only claim success when a real `tools/call` returned results.
+4. Install the plugin using your host's supported **local marketplace** flow; for Codex CLI, register the local marketplace and install `smurf-mempalace-connector@<marketplace-name>`. The portable `plugin.json`, `mcp.json`, and compatibility manifests are included. The plugin runs `python -u ${PLUGIN_ROOT}/server/readonly_mcp.py`.
+5. In a **local Work** task, select the plugin and ask: “Check SMURF MemPalace Connector status and search for my earlier decision about X.” Only claim success when a real `tools/call` returned results.
 
 **Troubleshooting:** If `tools/list` works locally but the AI cannot call the tools, check host plugin activation, local vs cloud execution mode, plugin cache and local tool discovery. Do not reinstall MemPalace or increase your plan until the execution mode is verified. Run local tests with `python -m unittest discover -s tests -v`.
 

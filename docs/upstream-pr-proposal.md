@@ -1,6 +1,6 @@
 # Proposal: community ChatGPT Plus Work / Codex local MCP read-only bridge
 
-**Project:** KHL MemPalace Recall (independent KeilerHirschLabs integration)
+**Project:** SMURF – MemPalace Connector (independent KeilerHirschLabs integration)
 
 ## Evidence
 
