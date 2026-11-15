@@ -15,7 +15,7 @@ import sys
 import time
 from typing import Any
 
-VERSION = "0.2.2"
+VERSION = "0.3.0"
 PROTOCOL = "2025-06-18"
 MAX_QUERY_CHARS = 160
 MAX_QUERY_TOKENS = 12
@@ -228,8 +228,8 @@ def search(arguments: Any) -> tuple[dict[str, Any], bool]:
 
 
 TOOL_LIST = [
-    {"name": "khl_recall_status", "title": "SMURF – MemPalace Connector Status", "description": "Check the explicitly configured local MemPalace SQLite index. No reads of unconfigured paths.", "inputSchema": {"type": "object", "properties": {}, "additionalProperties": False}, "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}},
-    {"name": "khl_recall_search", "title": "SMURF – MemPalace Connector Search", "description": "Read-only, source-grounded lexical search in the locally configured MemPalace SQLite index. Limits and wing allowlist enforced locally. Text may be sent to the host AI when this tool is called.", "inputSchema": {"type": "object", "properties": {"query": {"type": "string", "minLength": 1, "maxLength": 160}, "wing": {"type": "string", "maxLength": 100}, "limit": {"type": "integer", "minimum": 1, "maximum": 10}}, "required": ["query"], "additionalProperties": False}, "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}},
+    {"name": "smurf_recall_status", "title": "SMURF – MemPalace Connector Status", "description": "Check the explicitly configured local MemPalace SQLite index. No reads of unconfigured paths.", "inputSchema": {"type": "object", "properties": {}, "additionalProperties": False}, "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}},
+    {"name": "smurf_recall_search", "title": "SMURF – MemPalace Connector Search", "description": "Read-only, source-grounded lexical search in the locally configured MemPalace SQLite index. Limits and wing allowlist enforced locally. Text may be sent to the host AI when this tool is called.", "inputSchema": {"type": "object", "properties": {"query": {"type": "string", "minLength": 1, "maxLength": 160}, "wing": {"type": "string", "maxLength": 100}, "limit": {"type": "integer", "minimum": 1, "maximum": 10}}, "required": ["query"], "additionalProperties": False}, "annotations": {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}},
 ]
 
 
@@ -257,9 +257,9 @@ def execute(msg: Any) -> None:
         if not isinstance(params, dict):
             params = {}
         name, args = params.get("name"), params.get("arguments") or {}
-        if name == "khl_recall_status":
+        if name == "smurf_recall_status":
             data, is_error = (status(), False) if not args else ({"message": "No status arguments accepted."}, True)
-        elif name == "khl_recall_search":
+        elif name == "smurf_recall_search":
             data, is_error = search(args)
         else:
             emit({"jsonrpc": "2.0", "id": rid, "error": {"code": -32601, "message": "Unknown tool"}})

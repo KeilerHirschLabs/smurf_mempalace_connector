@@ -110,12 +110,14 @@ class SearchTests(unittest.TestCase):
         self.configure()
         messages=[{'jsonrpc':'2.0','id':1,'method':'initialize','params':{'protocolVersion':'2025-06-18'}},
             {'jsonrpc':'2.0','id':2,'method':'tools/list'},
-            {'jsonrpc':'2.0','id':3,'method':'tools/call','params':{'name':'khl_recall_status','arguments':{}}},
-            {'jsonrpc':'2.0','id':4,'method':'tools/call','params':{'name':'khl_recall_search','arguments':{'query':'ORION'}}}]
+            {'jsonrpc':'2.0','id':3,'method':'tools/call','params':{'name':'smurf_recall_status','arguments':{}}},
+            {'jsonrpc':'2.0','id':4,'method':'tools/call','params':{'name':'smurf_recall_search','arguments':{'query':'ORION'}}}]
         p=subprocess.run([sys.executable,'-u',str(ROOT/'server'/'readonly_mcp.py')], input='\n'.join(map(json.dumps,messages))+'\n', text=True,capture_output=True,timeout=15,check=True)
         got=[json.loads(line) for line in p.stdout.splitlines()]
         self.assertEqual(len(got),4)
-        self.assertEqual([t['name'] for t in got[1]['result']['tools']],['khl_recall_status','khl_recall_search'])
+        self.assertEqual([t['name'] for t in got[1]['result']['tools']],['smurf_recall_status','smurf_recall_search'])
+        self.assertEqual(got[0]['result']['serverInfo']['name'], 'smurf-mempalace-connector')
+        self.assertEqual(got[0]['result']['serverInfo']['version'], '0.3.0')
         self.assertFalse(got[3]['result']['isError'])
         result=json.loads(got[3]['result']['content'][0]['text'])
         self.assertEqual(result['count'],1)

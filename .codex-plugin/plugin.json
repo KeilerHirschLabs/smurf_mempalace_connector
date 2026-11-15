@@ -42,42 +42,42 @@
               "description": "Configuration status and backend detection on the sqlite_exact synthetic fixture",
               "expected_behavior": "Returns ready, sqlite_exact and read_only true without disclosing document contents.",
               "prompt": "Is my locally configured MemPalace index available for recall?",
-              "tools_triggered": "khl_recall_status"
+              "tools_triggered": "smurf_recall_status"
             },
             {
               "description": "Lexical search with provenance on sqlite_exact",
               "expected_behavior": "Returns one allowed hit with the exact test source and line range and no private-wing result.",
               "prompt": "Find LAB-ORION-7319 in my allowed MemPalace wing and cite the source.",
-              "tools_triggered": "khl_recall_search"
+              "tools_triggered": "smurf_recall_search"
             },
             {
               "description": "Chroma index search with source metadata",
               "expected_behavior": "Returns one synthetic Chroma result with drawer ID and provenance; no vectors or write operations.",
               "prompt": "Using my configured Chroma index, look for LAB-ORION-7319.",
-              "tools_triggered": "khl_recall_search"
+              "tools_triggered": "smurf_recall_search"
             },
             {
               "description": "Explicit allowlisted wing filter",
               "expected_behavior": "Queries with wing=lab and returns no private-wing content.",
               "prompt": "Search for ORION in the lab wing only.",
-              "tools_triggered": "khl_recall_search"
+              "tools_triggered": "smurf_recall_search"
             },
             {
               "description": "No-match query must remain honest",
               "expected_behavior": "Returns count=0 and an empty hits array without inventing a source.",
               "prompt": "Find the word NEVERMATCHXYZ in the configured archive.",
-              "tools_triggered": "khl_recall_search"
+              "tools_triggered": "smurf_recall_search"
             }
           ]
         }
       },
       "publication": {
-        "release_notes": "SMURF branding alignment: name, skill, server alias, support documents and EUPL-1.2 metadata. Read-only MCP tool names and implementation unchanged."
+        "release_notes": "SMURF v0.3.0: Rename the two MCP tool IDs to smurf_recall_status and smurf_recall_search. Read-only search behavior is unchanged. Existing clients must update saved tool references."
       }
     }
   },
   "name": "smurf-mempalace-connector",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "SMURF — Secure MemPalace Utility for Retrieval & Filtering. Read-only local MemPalace MCP connector.",
   "author": {
     "name": "KeilerHirsch Labs"

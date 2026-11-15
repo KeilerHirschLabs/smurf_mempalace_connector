@@ -16,8 +16,8 @@ Selected ChatGPT Plus Work environments have been tested using synthetic data; t
 
 ## Capabilities and limitations
 
-- `khl_recall_status`: verify the locally configured index, detected backend and allowed wing filters.
-- `khl_recall_search`: bounded read-only **SQLite FTS5 lexical search**, with source-file and line-range provenance where available.
+- `smurf_recall_status`: verify the locally configured index, detected backend and allowed wing filters.
+- `smurf_recall_search`: bounded read-only **SQLite FTS5 lexical search**, with source-file and line-range provenance where available.
 - Supports MemPalace `sqlite_exact` / `rust_exact` and Chroma SQLite indices. No migration or embeddings generation.
 - Uses standard Python 3.10+, SQLite `mode=ro`, `PRAGMA query_only`, a query-time budget, and a configured wing allowlist; no background daemon, network listener, API key, or writer tool.
 
@@ -29,7 +29,7 @@ This is **not** semantic retrieval, host-side background memory, automatic promp
 2. Clone the current `main` branch of [smurf_mempalace_connector](https://github.com/KeilerHirschLabs/smurf_mempalace_connector) into a stable local directory. Do **not** install the historical `v0.2.0` release archive as SMURF: its plugin manifest still uses the earlier `khl-mempalace-recall` package slug. Until a new SMURF release is published, use the current `main` branch.
 3. Copy `config.example.json` to the plugin config location and enter your own **absolute** SQLite index path. On Windows the default is `%APPDATA%/KeilerHirschLabs/MemPalaceRecall/config.json`; on Linux/macOS use `~/.config/keilerhirschlabs/mempalace-recall/config.json`. `KHL_RECALL_CONFIG` can point to another absolute JSON config.
 4. Restrict `allowed_wings` to exactly the data intended for use with the invoking AI host. The `*` wildcard explicitly permits all wings and may expose sensitive content.
-5. Install/register the plugin using a host that supports local stdio MCP execution. The MCP server command is `python -u ${PLUGIN_ROOT}/server/readonly_mcp.py`; the marketplace package slug is `smurf-mempalace-connector` (the GitHub repository uses underscores only in its repository name). Use `khl_recall_status` before trying searches.
+5. Install/register the plugin using a host that supports local stdio MCP execution. The MCP server command is `python -u ${PLUGIN_ROOT}/server/readonly_mcp.py`; the marketplace package slug is `smurf-mempalace-connector` (the GitHub repository uses underscores only in its repository name). Use `smurf_recall_status` before trying searches.
 
 A failed or unavailable host tool is not a successful search. For local smoke tests, run `python -m unittest discover -s tests -v`.
 

@@ -1,3 +1,9 @@
+# SMURF – MemPalace Connector v0.3.0 (MCP tool naming)
+
+- Renamed public MCP tool identifiers to `smurf_recall_status` and `smurf_recall_search` to match the SMURF brand across the Skill, server, tests, and review metadata.
+- **Breaking change for callers:** update prompts, saved tool references and integrations using v0.2.x tool identifiers. Search logic, read-only boundary, index configuration and filtering are unchanged.
+- Kept the plugin private; public GitHub source does not imply a public OpenAI Marketplace listing.
+
 # SMURF – MemPalace Connector (0.2.2, branding alignment)
 
 - Unified display name, Skill metadata, MCP server alias, README and public publisher text as SMURF – MemPalace Connector by KeilerHirsch Labs.
